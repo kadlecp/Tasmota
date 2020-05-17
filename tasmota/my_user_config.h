@@ -654,7 +654,9 @@
   #define USE_TASMOTA_SLAVE_FLASH_SPEED 57600      // Usually 57600 for 3.3V variants and 115200 for 5V variants
   #define USE_TASMOTA_SLAVE_SERIAL_SPEED 57600     // Depends on the sketch that is running on the Uno/Pro Mini
 
-  #define USE_RING                                 // Add support for Wemos Buzzer Ring
+// Only one of the following Buzzers can be enabled
+//#define USE_RING                                 // Add support for Wemos Buzzer Ring
+  #define USE_YL44                                 // Add support for YL-44 Buzzer Ring
 
 // -- End of general directives -------------------
 

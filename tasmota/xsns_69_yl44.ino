@@ -16,12 +16,12 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifdef USE_RING
+#ifdef USE_YL44
 /*********************************************************************************************\
  * Ring support
 \*********************************************************************************************/
 
-#define XSNS_68            68
+#define XSNS_69            69
 
 /*********************************************************************************************/
 
@@ -31,7 +31,7 @@ uint8_t ring_initialized = 1;
 
 void RingOff(void)
 {
-  digitalWrite(pin[GPIO_BUZZER], LOW);  // Buzzer Off
+  digitalWrite(pin[GPIO_BUZZER], HIGH);  // Buzzer Off
 }
 
 bool RingBeep(uint32_t count, uint32_t delayInMilis)
@@ -53,7 +53,6 @@ bool RingBeep(uint32_t count, uint32_t delayInMilis)
     }
     delay(delayInMilis);
   }
-  digitalWrite(pin[GPIO_BUZZER], LOW);
 
   AddLog_P2(LOG_LEVEL_DEBUG, PSTR("RNG: Ring triggered with following params: %d(%d)"), count, delayInMilis);
 
@@ -121,13 +120,13 @@ void CmndRing(void)
  * Interface
 \*********************************************************************************************/
 
-bool Xsns68(uint8_t function)
+bool Xsns69(uint8_t function)
 {
   bool result = false;
   if (ring_initialized) {
     switch (function) {
       case FUNC_COMMAND_SENSOR:
-        if (XSNS_68 == XdrvMailbox.index) {
+        if (XSNS_69 == XdrvMailbox.index) {
           result = RingBeep(1);
         }
         break;
@@ -139,4 +138,4 @@ bool Xsns68(uint8_t function)
   return result;
 }
 
-#endif  // USE_RING
+#endif  // USE_YL44
